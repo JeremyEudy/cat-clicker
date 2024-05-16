@@ -1,0 +1,16 @@
+Controls {
+    layout: vertical;
+    height: 50;
+    margin: 1;
+    min-width: 25;
+    padding: 1;
+}
+
+CountDisplay {
+    content-align: center top;
+    height: 10
+}
+
+#add {
+    align: center middle;
+}
