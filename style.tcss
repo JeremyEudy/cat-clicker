@@ -1,16 +1,19 @@
-Controls {
-    layout: vertical;
-    height: 50;
-    margin: 1;
-    min-width: 25;
-    padding: 1;
+Screen {
+    layout: grid;
+    grid-size: 1 2;
+    grid-rows: 1fr;
+    grid-columns: 1fr;
+}
+
+Log {
 }
 
 CountDisplay {
     content-align: center top;
-    height: 10
 }
 
-#add {
-    align: center middle;
+Controls {
+}
+
+Button {
 }
