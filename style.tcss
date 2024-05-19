@@ -1,19 +1,47 @@
-Screen {
+VerticalScroll{
+    border: round $primary;
+}
+
+#display-container {
     layout: grid;
-    grid-size: 1 2;
-    grid-rows: 1fr;
-    grid-columns: 1fr;
+    grid-size: 4 1;
 }
 
-Log {
+#num-scroll {
 }
 
-CountDisplay {
-    content-align: center top;
+#log-scroll {
+}
+
+#sprite-container {
+    column-span: 3;
+    layout: grid;
+    grid-size: 1 5;
+}
+
+Sprite {
+    row-span: 3;
+}
+
+LogDisplay {
+    height: 100%;
+    row-span: 2;
+}
+
+NumDisplay {
+    content-align-horizontal: left;
 }
 
 Controls {
+    layout: grid;
+    grid-size: 3;
+    grid-gutter: 1;
+}
+
+#catch {
+    column-span: 3;
 }
 
 Button {
+    width: 100%;
 }
