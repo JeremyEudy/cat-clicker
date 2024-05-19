@@ -159,6 +159,7 @@ class Engine(App):
         ("q", "quit", "Quit"),
         ("s", "save", "Save Game"),
         ("l", "load", "Load Game"),
+        ("d", "debug", "Load Debug Save"),
     ]
     CSS_PATH = "style.tcss"
 
@@ -219,10 +220,14 @@ class Engine(App):
         self.logger.send_message("Game saved!")
 
     def action_load(self):
-        with open("cat-save.json") as f:
-            save_dict = json.load(f)
-        if not save_dict:
-            self.logger.send_message("Save file is empty!")
+        try:
+            with open("cat-save.json") as f:
+                save_dict = json.load(f)
+            if not save_dict:
+                self.logger.send_message("Save file is empty!")
+                return
+        except Exception:
+            self.logger.send_message("Save file does not exist!")
             return
         self.food = save_dict["food"]
         self.food_rate = save_dict["food_rate"]
@@ -239,6 +244,32 @@ class Engine(App):
         self.upgrade_cost = save_dict["upgrade_cost"]
 
         self.update_screen("load-file")
+
+    def action_debug(self):
+        try:
+            with open("debug-cat-save.json") as f:
+                save_dict = json.load(f)
+            if not save_dict:
+                self.logger.send_message("Debug save file is empty!")
+                return
+        except Exception:
+            self.logger.send_message("Debug save file does not exist!")
+            return
+        self.food = save_dict["food"]
+        self.food_rate = save_dict["food_rate"]
+        self.hire_cat_cost = save_dict["hire_cat_cost"]
+        self.catch = save_dict["catch"]
+        self.catch_cost = save_dict["catch_cost"]
+        self.catnip = save_dict["catnip"]
+        self.catnip_cost = save_dict["catnip_cost"]
+        self.catnip_rate = save_dict["catnip_rate"]
+        self.racoon_cost = save_dict["racoon_cost"]
+        self.science = save_dict["science"]
+        self.science_cost = save_dict["science"]
+        self.upgrade = save_dict["upgrade"]
+        self.upgrade_cost = save_dict["upgrade_cost"]
+
+        self.update_screen("load-debug")
 
     def update_screen(self, action: str = None) -> None:
         self.num_display.update_screen(self.food, self.food_rate, self.catnip, self.catnip_rate, self.science, self.upgrade)
@@ -286,6 +317,8 @@ class Engine(App):
                 self.logger.send_message("One small steppy for cat, one big steppy for catkind. You win!")
             case "load-file":
                 self.logger.send_message("Save loaded!")
+            case "load-debug":
+                self.logger.send_message("Debug save loaded!")
             case _:
                 return
 
