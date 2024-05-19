@@ -34,14 +34,18 @@ NumDisplay {
 
 Controls {
     layout: grid;
-    grid-size: 3;
+    grid-size: 5;
     grid-gutter: 1;
 }
 
 #catch {
-    column-span: 3;
+    column-span: 5;
 }
 
 Button {
     width: 100%;
+}
+
+.hidden {
+    display: none;
 }
